@@ -1,3 +1,4 @@
+import Contact from "../Components/Contact/Contact";
 import Footer from "../Components/layout/Footer";
 import Navbar from "../Components/layout/Navbar";
 import { motion } from "framer-motion";
@@ -128,7 +129,7 @@ const Home = () => {
       </motion.section>
 
       {/* CONTACT */}
-      <motion.section
+      {/* <motion.section
   initial={{ opacity: 0, y: 50 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6 }}
@@ -150,7 +151,8 @@ const Home = () => {
             📞 Call Now
           </a>
         </div>
-      </motion.section>
+      </motion.section> */}
+      <Contact />
 
       <Footer />
     </div>
