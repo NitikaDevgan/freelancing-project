@@ -6,6 +6,7 @@ const Contact = () => {
 const [formData, setFormData] = useState({
   name: "",
   email: "",
+  phone: "",
   message: ""
 });
 
@@ -21,7 +22,7 @@ const handleSubmit = async (e) => {
 
   try {
     await axios.post("http://localhost:5000/api/contact", formData);
-    alert("Message sent successfully!");
+    setSuccess("Message sent successfully!");
   } catch (error) {
     console.log(error);
   }
@@ -49,6 +50,13 @@ return (
         type="email"
         name="email"
         placeholder="Your Email"
+        onChange={handleChange}
+        className="p-3 rounded bg-[#1a1a1a]"
+      />
+      <input
+        type="number"
+        name="phone"
+        placeholder="Your Phone Number"
         onChange={handleChange}
         className="p-3 rounded bg-[#1a1a1a]"
       />
