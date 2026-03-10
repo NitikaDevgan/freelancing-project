@@ -10,6 +10,8 @@ const [formData, setFormData] = useState({
   message: ""
 });
 
+const [success, setSuccess] = useState("");
+
 const handleChange = (e) => {
   setFormData({
     ...formData,
@@ -22,7 +24,16 @@ const handleSubmit = async (e) => {
 
   try {
     await axios.post("http://localhost:5000/api/contact", formData);
-    setSuccess("Message sent successfully!");
+
+    setSuccess("✅ Message sent successfully!");
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
+    });
+
   } catch (error) {
     console.log(error);
   }
@@ -38,42 +49,55 @@ return (
       onSubmit={handleSubmit}
       className="max-w-xl mx-auto flex flex-col gap-4"
     >
+
       <input
         type="text"
         name="name"
         placeholder="Your Name"
+        value={formData.name}
         onChange={handleChange}
-        className="p-3 rounded bg-[#1a1a1a]"
+        className="p-3 rounded bg-white text-black outline-none"
       />
 
       <input
         type="email"
         name="email"
         placeholder="Your Email"
+        value={formData.email}
         onChange={handleChange}
-        className="p-3 rounded bg-[#1a1a1a]"
+        className="p-3 rounded bg-white text-black outline-none"
       />
+
       <input
-        type="number"
+        type="tel"
         name="phone"
         placeholder="Your Phone Number"
+        value={formData.phone}
         onChange={handleChange}
-        className="p-3 rounded bg-[#1a1a1a]"
+        className="p-3 rounded bg-white text-black outline-none"
       />
 
       <textarea
         name="message"
         placeholder="Your Message"
+        value={formData.message}
         onChange={handleChange}
-        className="p-3 rounded bg-[#1a1a1a]"
+        className="p-3 rounded bg-white text-black outline-none"
       />
 
       <button
         type="submit"
-        className="bg-orange-500 hover:bg-orange-600 p-3 rounded"
+        className="bg-orange-500 hover:bg-orange-600 p-3 rounded font-semibold"
       >
         Send Message
       </button>
+
+      {success && (
+        <p className="text-green-400 mt-4 font-semibold">
+          {success}
+        </p>
+      )}
+
     </form>
   </div>
 );
